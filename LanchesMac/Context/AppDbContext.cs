@@ -17,5 +17,6 @@ public class AppDbContext : DbContext
     //O nome das propriedades de cada DbSet "Categorias" e "Lanches", define o nome da tabela que o EntityFrameworkCore, vai criar
     public DbSet<Categoria> Categorias { get; set; }
     public DbSet<Lanche> Lanches { get; set; }
+    public DbSet<CarrinhoCompraItem> CarrinhoCompraItens { get; set; }
 
 }
