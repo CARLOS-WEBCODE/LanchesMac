@@ -1,9 +1,11 @@
 ﻿using LanchesMac.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace LanchesMac.Context;
 
-public class AppDbContext : DbContext
+public class AppDbContext : IdentityDbContext<IdentityUser>
 {
     //A classe DbContextOptions, define as opções a serem usadas pelo DbContext.
     //e ela vai carregar as informações de configurações necessárias para configurar o DbContext
