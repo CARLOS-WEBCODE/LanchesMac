@@ -23,6 +23,7 @@ public class AccountController : Controller
         });
     }
 
+    [HttpPost]
     public async Task<IActionResult> Login(LoginViewModel loginVM)
     {
         if (!ModelState.IsValid) return View(loginVM);
