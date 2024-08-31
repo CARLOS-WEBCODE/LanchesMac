@@ -1,6 +1,7 @@
 ﻿using LanchesMac.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.Operations;
 
 namespace LanchesMac.Controllers;
 public class AccountController : Controller
@@ -44,5 +45,29 @@ public class AccountController : Controller
         }
         ModelState.AddModelError("", "Falha ao realizar o login!!");
         return View(loginVM);
+    }
+    public IActionResult Register()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Register(LoginViewModel registroVM)
+    {
+        if(ModelState.IsValid)
+        {
+            var user = new IdentityUser { UserName = registroVM.UserName, };
+            var result = await _userManager.CreateAsync(user, registroVM.Password);
+
+            if(result.Succeeded)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            else
+            {
+                this.ModelState.AddModelError( "Registro", "Falha ao registrar o usuário");
+            }
+        }
+        return View(registroVM);
     }
 }
