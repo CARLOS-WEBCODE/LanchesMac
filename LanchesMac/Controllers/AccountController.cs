@@ -34,6 +34,7 @@ public class AccountController : Controller
         if (user != null)
         {
             var result = await _signInManager.PasswordSignInAsync(user, loginVM.Password, false, false);
+            
             if (result.Succeeded)
             {
                 if (string.IsNullOrEmpty(loginVM.ReturnUrl))
@@ -70,5 +71,14 @@ public class AccountController : Controller
             }
         }
         return View(registroVM);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Logout()
+    {
+        HttpContext.Session.Clear();
+        HttpContext.User = null;
+        await _signInManager.SignOutAsync();
+        return RedirectToAction("Index", "Home");
     }
 }
