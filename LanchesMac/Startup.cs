@@ -37,6 +37,7 @@ public class Startup
         //    options.Password.RequiredUniqueChars = 1;
         //});
 
+        //services
         services.AddTransient<ILancheRepository, LancheRepository>();
         services.AddTransient<ICategoriaRepository, CategoriaRepository>();
         services.AddTransient<IPedidoRepository, PedidoRepository>();
